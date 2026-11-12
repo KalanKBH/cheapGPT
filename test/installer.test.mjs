@@ -113,6 +113,8 @@ test("each profile installs only that profile's unique root text", async () => {
     ["ultracheap", "luna-6-max", ["gpt-6.1-sol at medium effort", "gpt-6.1-sol at xhigh effort"]],
     ["cheap", "gpt-6.1-sol at medium effort", ["luna-6-max", "gpt-6.1-sol at xhigh effort"]],
     ["cheap-100", "gpt-6.1-sol at xhigh effort", ["luna-6-max", "gpt-6.1-sol at medium effort"]],
+    ["muse-spark", "Muse Spark", ["gpt-6.1-sol at medium effort", "gpt-6.1-sol at xhigh effort", "gpt-6-luna"]],
+    ["muse-wonder", "Muse Wonder", ["gpt-6.1-sol at medium effort", "gpt-6.1-sol at xhigh effort", "gpt-6-luna"]],
   ];
   for (const [profile, unique, absent] of cases) {
     const dir = await tempDir();

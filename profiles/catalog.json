@@ -23,7 +23,7 @@
       "root": "sol-6.1-medium",
       "planner": "self (root); loop-breaker GPT-6.1 Sol-xhigh",
       "reviewer": "GPT-6.1 Sol-medium",
-      "planningMode": "CHEAPGPT cheap. Apply the main prompt; reread cheapgpt/plan.md after context loss. Route line first (DIRECT: obvious edit or bounded ops task / FOCUSED / FULL); escalate, never downgrade. Ship forward: criteria are decided by real-run output; add a check only for an observed failure, a criterion no run or reviewer can decide, or an unsafe action; verification stays smaller than the product. Cycle: PLAN (core: acceptance list, mechanism; then handoffs) → BUILD (core path first, run on real input, core review right after; Terra dynamic: needs judgment; Luna mechanical: fully determined by the handoff; you integrate and run the path, code only on DIRECT). Plan and build each: core review PASS/FIX/ESCALATE, terminal PASS/UNRESOLVED. Failed repair or signal: revert, back to PLAN. UNRESOLVED: announce, loop-breaker cycle now (fresh Sol xhigh replans); no significant advance or 2 such cycles → STEP BACK, then 2 cycles, then BLOCKED with EXPLORE/RESEARCH. Native spawn/wait, never poll across turns; verify each child's model; never simulate or read a missing result as a pass. Each review: status line, acceptance table, Next. Delete board and temporary/ on PASS.",
+      "planningMode": "CHEAPGPT cheap. Apply the main prompt; reread cheapgpt/plan.md after context loss. Route line first (DIRECT: obvious edit or bounded ops task / FOCUSED / FULL); escalate, never downgrade. Ship forward: criteria are decided by real-run output; add a check only for an observed failure, a criterion no run or reviewer can decide, or an unsafe action; verification stays smaller than the product. Cycle: PLAN (core: acceptance list, mechanism; then handoffs) \u2192 BUILD (core path first, run on real input, core review right after; Terra dynamic: needs judgment; Luna mechanical: fully determined by the handoff; you integrate and run the path, code only on DIRECT). Plan and build each: core review PASS/FIX/ESCALATE, terminal PASS/UNRESOLVED. Failed repair or signal: revert, back to PLAN. UNRESOLVED: announce, loop-breaker cycle now (fresh Sol xhigh replans); no significant advance or 2 such cycles \u2192 STEP BACK, then 2 cycles, then BLOCKED with EXPLORE/RESEARCH. Native spawn/wait, never poll across turns; verify each child's model; never simulate or read a missing result as a pass. Each review: status line, acceptance table, Next. Delete board and temporary/ on PASS.",
       "implementationMode": ""
     },
     "cheap-100": {
@@ -35,7 +35,31 @@
       "root": "sol-6.1-xhigh",
       "planner": "self (root); loop-breaker GPT-6 Astra-xhigh",
       "reviewer": "GPT-6.1 Sol-xhigh",
-      "planningMode": "CHEAPGPT cheap-100. Apply the main prompt; reread cheapgpt/plan.md after context loss. Route line first (DIRECT: obvious edit or bounded ops task / FOCUSED / FULL); escalate, never downgrade. Ship forward: criteria are decided by real-run output; add a check only for an observed failure, a criterion no run or reviewer can decide, or an unsafe action; verification stays smaller than the product. Cycle: PLAN (core: acceptance list, mechanism; then handoffs) → BUILD (core path first, run on real input, core review right after; Terra dynamic: needs judgment; Luna mechanical: fully determined by the handoff; you integrate and run the path, code only on DIRECT). Plan and build each: core review PASS/FIX/ESCALATE, terminal PASS/UNRESOLVED. Failed repair or signal: revert, back to PLAN. UNRESOLVED: announce, loop-breaker cycle now (fresh Astra xhigh replans); no significant advance or 2 such cycles → STEP BACK, then 2 cycles, then BLOCKED with EXPLORE/RESEARCH. Native spawn/wait, never poll across turns; verify each child's model; never simulate or read a missing result as a pass. Each review: status line, acceptance table, Next. Delete board and temporary/ on PASS.",
+      "planningMode": "CHEAPGPT cheap-100. Apply the main prompt; reread cheapgpt/plan.md after context loss. Route line first (DIRECT: obvious edit or bounded ops task / FOCUSED / FULL); escalate, never downgrade. Ship forward: criteria are decided by real-run output; add a check only for an observed failure, a criterion no run or reviewer can decide, or an unsafe action; verification stays smaller than the product. Cycle: PLAN (core: acceptance list, mechanism; then handoffs) \u2192 BUILD (core path first, run on real input, core review right after; Terra dynamic: needs judgment; Luna mechanical: fully determined by the handoff; you integrate and run the path, code only on DIRECT). Plan and build each: core review PASS/FIX/ESCALATE, terminal PASS/UNRESOLVED. Failed repair or signal: revert, back to PLAN. UNRESOLVED: announce, loop-breaker cycle now (fresh Astra xhigh replans); no significant advance or 2 such cycles \u2192 STEP BACK, then 2 cycles, then BLOCKED with EXPLORE/RESEARCH. Native spawn/wait, never poll across turns; verify each child's model; never simulate or read a missing result as a pass. Each review: status line, acceptance table, Next. Delete board and temporary/ on PASS.",
+      "implementationMode": ""
+    },
+    "muse-spark": {
+      "id": "muse-spark",
+      "file": "muse-spark.md",
+      "title": "Muse Spark",
+      "account": "Muse (free plan)",
+      "difficulty": "medium-hard tasks",
+      "root": "muse-spark",
+      "planner": "self (root); loop-breaker Muse Wonder",
+      "reviewer": "Muse Spark",
+      "planningMode": "CHEAPGPT muse-spark. Apply the main prompt; reread cheapgpt/plan.md after context loss. Route line first (DIRECT: obvious edit or bounded ops task / FOCUSED / FULL); escalate, never downgrade. Ship forward: criteria are decided by real-run output; add a check only for an observed failure, a criterion no run or reviewer can decide, or an unsafe action; verification stays smaller than the product. Cycle: PLAN (core: acceptance list, mechanism; then handoffs) \u2192 BUILD (core path first, run on real input, core review right after; Terra dynamic: needs judgment; Luna mechanical: fully determined by the handoff; you integrate and run the path, code only on DIRECT). Plan and build each: core review PASS/FIX/ESCALATE, terminal PASS/UNRESOLVED. Failed repair or signal: revert, back to PLAN. UNRESOLVED: announce, loop-breaker cycle now (fresh Muse Wonder replans); no significant advance or 2 such cycles \u2192 STEP BACK, then 2 cycles, then BLOCKED with EXPLORE/RESEARCH. Native spawn/wait, never poll across turns; verify each child's model; never simulate or read a missing result as a pass. Each review: status line, acceptance table, Next. Delete board and temporary/ on PASS.",
+      "implementationMode": ""
+    },
+    "muse-wonder": {
+      "id": "muse-wonder",
+      "file": "muse-wonder.md",
+      "title": "Muse Wonder",
+      "account": "Muse (paid plan) / Meta Model API",
+      "difficulty": "hardest tasks",
+      "root": "muse-wonder",
+      "planner": "self (root); loop-breaker Muse Wonder",
+      "reviewer": "Muse Wonder",
+      "planningMode": "CHEAPGPT muse-wonder. Apply the main prompt; reread cheapgpt/plan.md after context loss. Route line first (DIRECT: obvious edit or bounded ops task / FOCUSED / FULL); escalate, never downgrade. Ship forward: criteria are decided by real-run output; add a check only for an observed failure, a criterion no run or reviewer can decide, or an unsafe action; verification stays smaller than the product. Cycle: PLAN (core: acceptance list, mechanism; then handoffs) \u2192 BUILD (core path first, run on real input, core review right after; Terra dynamic: needs judgment; Luna mechanical: fully determined by the handoff; you integrate and run the path, code only on DIRECT). Plan and build each: core review PASS/FIX/ESCALATE, terminal PASS/UNRESOLVED. Failed repair or signal: revert, back to PLAN. UNRESOLVED: announce, loop-breaker cycle now (fresh Muse Wonder replans); no significant advance or 2 such cycles \u2192 STEP BACK, then 2 cycles, then BLOCKED with EXPLORE/RESEARCH. Native spawn/wait, never poll across turns; verify each child's model; never simulate or read a missing result as a pass. Each review: status line, acceptance table, Next. Delete board and temporary/ on PASS.",
       "implementationMode": ""
     }
   }

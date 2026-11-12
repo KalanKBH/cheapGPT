@@ -33,6 +33,11 @@ const PROFILE_ALIASES = {
   "cheap-100": "cheap-100",
   cheap100: "cheap-100",
   "100": "cheap-100",
+  "muse-spark": "muse-spark",
+  spark: "muse-spark",
+  muse: "muse-spark",
+  "muse-wonder": "muse-wonder",
+  wonder: "muse-wonder",
   // retired profiles migrate to cheap-100
   "cheap-5x": "cheap-100",
   cheap5x: "cheap-100",
@@ -76,7 +81,7 @@ export async function loadProfile(profileId, sourceRoot = HERE) {
   const meta = catalog.profiles[profileId];
   if (!meta) {
     throw new CheapgptError(
-      `Unknown profile '${profileId}'. Use cheap, cheap-100, or ultracheap (legacy).`,
+      `Unknown profile '${profileId}'. Use cheap, cheap-100, ultracheap (legacy), muse-spark, or muse-wonder.`,
       "PROFILE"
     );
   }
@@ -537,6 +542,8 @@ Profiles:
   cheap        ChatGPT Plus, medium-hard      root=sol-6.1-medium (gpt-6.1-sol medium)
   cheap-100    ChatGPT Pro, hardest           root=sol-6.1-xhigh (gpt-6.1-sol xhigh)
   ultracheap   ChatGPT Plus, simple (legacy)  root=luna-6-max (gpt-6-luna max)
+  muse-spark   Muse free plan, medium-hard    root=Muse Spark (loop-breaker: Muse Wonder)
+  muse-wonder  Muse paid/API, hardest         root=Muse Wonder (mechanical: Muse Spark)
 
 Options:
   --project <dir>     Target repository (default: cwd)
@@ -704,7 +711,7 @@ async function cmdInstall(args, sourceRoot = HERE) {
   const profileId = resolveProfileId(args.profile);
   if (!profileId) {
     throw new CheapgptError(
-      "install requires --profile cheap|cheap-100|ultracheap",
+      "install requires --profile cheap|cheap-100|ultracheap|muse-spark|muse-wonder",
       "USAGE"
     );
   }

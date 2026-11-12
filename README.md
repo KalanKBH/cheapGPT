@@ -88,9 +88,29 @@ Install **exactly one**. They are mutually exclusive.
 | --- | --- | --- | --- | --- | --- | --- | --- | ---: |
 | `cheap` | ChatGPT Plus | Medium-hard tasks | sol-6.1-medium (`gpt-6.1-sol` medium) | `gpt-6.1-terra` medium | `gpt-6-luna` max | `gpt-6.1-sol` medium | `gpt-6.1-sol` xhigh | 20,000 |
 | `cheap-100` | ChatGPT Pro | Hardest tasks | sol-6.1-xhigh (`gpt-6.1-sol` xhigh) | `gpt-6.1-terra` max | `gpt-6-luna` max | `gpt-6.1-sol` xhigh | `gpt-6-astra` xhigh | 25,000 |
+| `muse-spark` | Muse free plan | Medium-hard tasks | Muse Spark | Muse Spark | Muse Spark | Muse Spark | Muse Wonder | 20,000 |
+| `muse-wonder` | Muse paid plan / Meta Model API | Hardest tasks | Muse Wonder | Muse Wonder | Muse Spark | Muse Wonder | Muse Wonder | 25,000 |
 | `ultracheap` (legacy) | ChatGPT Plus | Simple tasks | luna-6-max (`gpt-6-luna` max) | — (root implements) | — | `gpt-6-luna` max | fresh `gpt-6.1-sol` medium replanner | 15,000 |
 
 `ultracheap` is a **legacy** profile. It keeps the previous orchestration design and is not maintained against the current flow. A new ultracheap flow will be released once good cheap models and big models at a decent price make it viable.
+
+## Muse edition
+
+The `muse-spark` and `muse-wonder` profiles are the same CheapGPT flow, routed onto Meta's Muse models instead of OpenAI's GPT-6 family. Muse has two models: **Muse Spark** (the lighter model; what the Muse app runs on the free plan) and **Muse Wonder** (the frontier model; in the Muse app it comes with a paid plan, and via the Meta Model API at $0.20/M cached input, $4.00/M input, $20.00/M output tokens).
+
+- `muse-spark` (cheap analog): every role on Muse Spark; Muse Wonder appears only as the loop-breaker, when a terminal review fails. Maximum saving. Use it for routine work — the day-to-day grind where the mechanism is known and the cost of a failed cycle is low.
+- `muse-wonder` (cheap-100 analog): Muse Wonder on root, dynamic implementation, reviews and loop-breaking; Muse Spark only for mechanical work the handoff fully determines. Use it for the hardest tasks, where a wrong first pass costs more than the model premium.
+
+Install exactly as the Codex profiles, naming the Muse profile:
+
+```bash
+node /path/to/cheapGPT/install.mjs install --project . --profile muse-spark
+node /path/to/cheapGPT/install.mjs install --project . --profile muse-wonder
+```
+
+Two honest limits. First, a profile cannot change which model the Muse app's runtime assigns to a session — that is the runtime's call. What the profile controls is the routing discipline: which roles exist, who does what, when a fresh reviewer is worth it, and when to stop and escalate. That discipline saves tokens on any harness that lets you pick Muse models (Meta Model API, Muse Code), and it applies directly to Muse subagent work. Second, the `.codex/` hooks the installer writes are Codex-specific; for a Muse-only project, install with `--no-hooks` (AGENTS.md policy only) — the managed block is the constitution, and it works without them.
+
+Fork note: this checkout is a fork of `Lycvrgvs/cheapGPT` adapted for Muse models. The Muse profiles carry `ISSUE_REPO: YOUR-USERNAME/cheapGPT-muse` — set it to your fork's repo before using the issue-report flow. To create the GitHub fork: `gh auth login`, then `gh repo fork Lycvrgvs/cheapGPT --clone`, or fork in the GitHub UI and push this checkout to it.
 
 Preferred root is the economical/capability configuration CheapGPT recommends. It does not override Codex's harness/system model identity and is not a prerequisite for execution. If the already-running root differs, work continues without a switch.
 
