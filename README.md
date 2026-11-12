@@ -110,7 +110,7 @@ node /path/to/cheapGPT/install.mjs install --project . --profile muse-wonder
 
 Two honest limits. First, a profile cannot change which model the Muse app's runtime assigns to a session — that is the runtime's call. What the profile controls is the routing discipline: which roles exist, who does what, when a fresh reviewer is worth it, and when to stop and escalate. That discipline saves tokens on any harness that lets you pick Muse models (Meta Model API, Muse Code), and it applies directly to Muse subagent work. Second, the `.codex/` hooks the installer writes are Codex-specific; for a Muse-only project, install with `--no-hooks` (AGENTS.md policy only) — the managed block is the constitution, and it works without them.
 
-Fork note: this checkout is a fork of `Lycvrgvs/cheapGPT` adapted for Muse models. The Muse profiles carry `ISSUE_REPO: YOUR-USERNAME/cheapGPT-muse` — set it to your fork's repo before using the issue-report flow. To create the GitHub fork: `gh auth login`, then `gh repo fork Lycvrgvs/cheapGPT --clone`, or fork in the GitHub UI and push this checkout to it.
+Fork note: this checkout is a fork of `Lycvrgvs/cheapGPT` adapted for Muse models, published at [`KalanKBH/cheapGPT`](https://github.com/KalanKBH/cheapGPT) (branch `muse-edition`). The Muse profiles carry `ISSUE_REPO: KalanKBH/cheapGPT`, so the issue-report flow files against this fork.
 
 Preferred root is the economical/capability configuration CheapGPT recommends. It does not override Codex's harness/system model identity and is not a prerequisite for execution. If the already-running root differs, work continues without a switch.
 
