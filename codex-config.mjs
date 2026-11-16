@@ -116,6 +116,13 @@ function findMarkerRange(lines) {
 function collectKeys(lines, from, to, skipMarkers = false) {
   const keys = new Map();
   let inManaged = false;
+  // A range can begin inside the managed block (the table header sits between
+  // the markers), so establish the marker state at `from` from the prefix.
+  for (let i = 0; i < from; i += 1) {
+    const prefix = lines[i].trim();
+    if (prefix === TOML_START) inManaged = true;
+    else if (prefix === TOML_END) inManaged = false;
+  }
   for (let i = from; i < to; i += 1) {
     const trimmed = lines[i].trim();
     if (trimmed === TOML_START) {
@@ -228,7 +235,14 @@ export function mergeMultiAgentConfig(existingText) {
     }
   }
 
-  const managedLines = missing.length ? [TOML_START, ...managedKeyLines(missing), TOML_END] : [];
+  // When the replaced marker region held the table header (the layout a fresh
+  // install writes), the refreshed block must carry the header again, or the
+  // keys land outside any table.
+  const tableInsideMarkers =
+    markers && table.start > markers.start && table.start < markers.end;
+  const managedLines = missing.length
+    ? [TOML_START, ...(tableInsideMarkers ? [TABLE_HEADER] : []), ...managedKeyLines(missing), TOML_END]
+    : [];
 
   if (!markers && missing.length === 0) {
     return {

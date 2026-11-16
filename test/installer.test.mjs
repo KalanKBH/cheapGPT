@@ -152,6 +152,27 @@ test("update replaces only CheapGPT-owned content and can switch profiles", asyn
   }
 });
 
+test("update after install keeps the multi-agent config and doctor passes", async () => {
+  const dir = await tempDir();
+  try {
+    await cli(dir, ["install", "--profile", "cheap"]);
+    await cli(dir, ["update"]);
+    const config = await readFile(path.join(dir, ".codex", "config.toml"), "utf8");
+    assert.match(config, /\[features\.multi_agent_v2\]/);
+    assert.match(config, /wait_agent_enabled = true/);
+    assert.match(config, /max_wait_timeout_ms = 3600000/);
+    const state = JSON.parse(await readFile(path.join(dir, ".cheapgpt", "state.json"), "utf8"));
+    assert.equal(state.toml.managedKeys.length, 6);
+    const doctor = await cli(dir, ["doctor"]);
+    assert.equal(doctor.ok, true);
+    // Merging an installer-written config is idempotent.
+    const once = mergeMultiAgentConfig(null);
+    assert.equal(mergeMultiAgentConfig(once.text).text, once.text);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
 test("modified managed block fails doctor and update unless --force", async () => {
   const dir = await tempDir();
   try {
